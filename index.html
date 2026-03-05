@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Carreira · Silvanio Góis · Estratégia & Gestão</title>
+    <!-- Font Awesome para ícones profissionais -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: rgb(39, 98, 141);
+            --primary-light: #e6f0f7;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+            --whatsapp: #25d366;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            padding: 40px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid var(--primary);
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 5px;
+            background-color: #d9e6f2;
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 2.8rem;
+            overflow: hidden; /* garante que a imagem respeite o border-radius */
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .header-text p {
+            margin: 8px 0 0 0;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #3a6a9e;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .whatsapp-link {
+            display: inline-block;
+            background-color: var(--whatsapp);
+            color: white;
+            padding: 14px 24px;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            margin-top: 12px;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .whatsapp-link:hover {
+            background-color: #20b859;
+        }
+
+        /* Botão de download */
+        .download-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--primary);
+            transition: all 0.2s;
+            margin-left: 15px;
+        }
+        .download-btn:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* Main container */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            margin-bottom: 30px;
+            border: 1px solid rgba(39,98,141,0.08);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.9rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-left: 6px solid var(--primary);
+            padding-left: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2 i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Stats cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .stat-box {
+            background: var(--primary);
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(39,98,141,0.2);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            opacity: 0.95;
+        }
+
+        /* Cards de competências */
+        .competencias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 25px 0 10px;
+        }
+
+        .comp-card {
+            background: var(--primary-light);
+            padding: 20px 18px;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .comp-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .comp-card i {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .comp-card strong {
+            font-size: 1.2rem;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .comp-card p {
+            font-size: 0.95rem;
+            color: #1e3a5f;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .comp-hours {
+            font-weight: 700;
+            color: var(--primary);
+            background: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+
+        /* Experiência com bullets */
+        .experience-item {
+            margin-bottom: 28px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e0e9f0;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .exp-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 8px;
+        }
+
+        .exp-period {
+            font-weight: 500;
+            color: #2c5a82;
+            background: var(--primary-light);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+
+        .exp-desc {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .exp-desc li {
+            list-style: none;
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .exp-desc li::before {
+            content: "▹";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 4px;
+            top: -2px;
+        }
+
+        /* Projetos de impacto (cards) */
+        .projetos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .projeto-card {
+            background: var(--primary-light);
+            padding: 25px;
+            border-radius: 16px;
+            transition: all 0.2s;
+            border: 1px solid rgba(39,98,141,0.1);
+        }
+        .projeto-card:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .projeto-card i {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .projeto-card h4 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .projeto-card p {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .projeto-resultado {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* Listas */
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px 20px;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 26px;
+            font-size: 1rem;
+        }
+
+        .bullet-list li::before {
+            content: "▹";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: #c2e0ff;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dotted;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 5%;
+            }
+            .profile-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .contact-info {
+                text-align: center;
+            }
+            .header-text h1 {
+                font-size: 1.9rem;
+            }
+            .download-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="profile-section">
+        <div class="profile-img" role="img" aria-label="Foto Silvanio Gois">
+            <img src="Executivo_Silvanio_Gestor.png" alt="Silvanio Gois">
+        </div>
+        <div class="header-text">
+            <h1>Silvanio Gois</h1>
+            <p>Gestão e Negócios</p>
+        </div>
+    </div>
+    <div class="contact-info">
+        <strong style="font-size:1.1rem;">Canal direto</strong><br>
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
+            <a href="https://wa.me/5513988301094" target="_blank" class="whatsapp-link">
+                <i class="fab fa-whatsapp"></i> Contato
+            </a>
+            <a href="#" onclick="window.print(); return false;" class="download-btn">
+                <i class="fas fa-download"></i> Baixar PDF
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="main-container">
+
+    <!-- QUEM SOU + PROPOSTA DE VALOR -->
+    <section class="card">
+        <h2><i class="fas fa-user-tie"></i> Proposta de valor</h2>
+        <p style="font-size:1.2rem; font-weight:400;">Mais de 14 anos integrando a visão operacional à estratégia de negócios nos setores de infraestrutura, energia e logística. Minha atuação é orientada a dados e focada em rentabilidade, compliance e melhoria contínua. Atualmente curso Processos Gerenciais (conclusão junho/2026), consolidando uma trajetória que une técnica, gestão e inovação.</p>
+        <div style="background: var(--primary-light); padding: 20px; border-radius: 12px; margin-top: 25px;">
+            <p style="font-weight:600; color:var(--primary); margin-bottom:10px;"><i class="fas fa-star" style="margin-right:5px;"></i> DIFERENCIAIS ESTRATÉGICOS</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+                <span style="flex:1; min-width:180px;"><i class="fas fa-link" style="color:var(--primary); margin-right:5px;"></i> Integrador operação-estratégia</span>
+                <span style="flex:1; min-width:180px;"><i class="fas fa-chart-line" style="color:var(--primary); margin-right:5px;"></i> Decisões baseadas em dados</span>
+                <span style="flex:1; min-width:180px;"><i class="fas fa-file-signature" style="color:var(--primary); margin-right:5px;"></i> Governança de suprimentos</span>
+                <span style="flex:1; min-width:180px;"><i class="fas fa-calculator" style="color:var(--primary); margin-right:5px;"></i> Visão de custos e rentabilidade</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- NÚMEROS-CHAVE -->
+    <div class="stats-grid">
+        <div class="stat-box"><span class="stat-number">14+</span><span class="stat-label">anos de experiência</span></div>
+        <div class="stat-box"><span class="stat-number">8.800h</span><span class="stat-label">capacitação multidisciplinar</span></div>
+        <div class="stat-box"><span class="stat-number">10</span><span class="stat-label">domínios complementares</span></div>
+        <div class="stat-box"><span class="stat-number">2026</span><span class="stat-label">graduação em andamento</span></div>
+    </div>
+
+    <!-- MAPA DE COMPETÊNCIAS (cards com ícones) -->
+    <section class="card">
+        <h2><i class="fas fa-brain"></i> Mapa de competências & aplicações</h2>
+        <p>Distribuição intencional da minha formação e experiência, sempre com foco em resolver problemas de negócio de ponta a ponta.</p>
+        <div class="competencias-grid">
+            <div class="comp-card"><i class="fas fa-chart-pie"></i><strong>Gestão e Negócios</strong><p>Liderança estratégica, planejamento, análise de viabilidade, otimização de processos.</p><span class="comp-hours">2.326 h</span></div>
+            <div class="comp-card"><i class="fas fa-ruler-combined"></i><strong>Orçamentação e Planejamento</strong><p>Orçamentos executivos, controle físico-financeiro, MS Project, Primavera, SINAPI, SICRO, ORSE, TCPO, CUB.</p><span class="comp-hours">1.966 h</span></div>
+            <div class="comp-card"><i class="fas fa-database"></i><strong>Análise de Dados & BI</strong><p>Dashboards, machine learning, Python, R, Power BI, Looker Studio, Tableau, tomada de decisão data-driven.</p><span class="comp-hours">1.555 h</span></div>
+            <div class="comp-card"><i class="fas fa-robot"></i><strong>Tecnologia e IA</strong><p>Automação, IA generativa, prompt engineering, metodologias ágeis (Scrum, Kanban).</p><span class="comp-hours">674 h</span></div>
+            <div class="comp-card"><i class="fas fa-truck"></i><strong>Supply Chain & Logística</strong><p>Gestão de estoques, inbound logistics, negociação com fornecedores, redução de ociosidade.</p><span class="comp-hours">627 h</span></div>
+            <div class="comp-card"><i class="fas fa-users"></i><strong>Liderança & Pessoas</strong><p>Inteligência emocional, mediação de conflitos, comunicação executiva, coaching.</p><span class="comp-hours">516 h</span></div>
+            <div class="comp-card"><i class="fas fa-bullhorn"></i><strong>Marketing Digital</strong><p>Estratégias de posicionamento, SEO, e-commerce, branding.</p><span class="comp-hours">442 h</span></div>
+            <div class="comp-card"><i class="fas fa-leaf"></i><strong>Sustentabilidade & ESG</strong><p>Compliance ambiental, gestão de resíduos, projetos sustentáveis.</p><span class="comp-hours">434 h</span></div>
+            <div class="comp-card"><i class="fas fa-language"></i><strong>Inglês técnico</strong><p>Leitura de manuais, listening, vocabulário técnico.</p><span class="comp-hours">138 h</span></div>
+            <div class="comp-card"><i class="fas fa-hard-hat"></i><strong>Segurança do Trabalho</strong><p>Gestão de riscos, NRs, prevenção de acidentes.</p><span class="comp-hours">131 h</span></div>
+        </div>
+    </section>
+
+    <!-- EXPERIÊNCIA PROFISSIONAL -->
+    <section class="card">
+        <h2><i class="fas fa-briefcase"></i> Experiência e entregas relevantes</h2>
+
+        <div class="experience-item">
+            <div class="exp-title"><i class="fas fa-helmet-safety" style="margin-right:8px;"></i> Liderança em Operações e Suprimentos <span class="exp-period">84 meses</span></div>
+            <ul class="exp-desc">
+                <li>Coordenação de equipes multidisciplinares em terminais industriais e projetos de infraestrutura crítica (ambientes de alta periculosidade).</li>
+                <li>Implantação de melhorias contínuas que reduziram ociosidade operacional em 18% e otimizaram fluxos logísticos.</li>
+                <li>Gestão de ativos e estoques estratégicos, garantindo disponibilidade de materiais com redução de 12% nos custos de armazenagem.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="exp-title"><i class="fas fa-file-contract"></i> Gestão de Contratos e Controladoria <span class="exp-period">35 meses</span></div>
+            <ul class="exp-desc">
+                <li>Interface entre operação e áreas fiscal/contábil em projetos de saneamento e infraestrutura, assegurando conformidade contratual.</li>
+                <li>Negociação de aditivos e reequilíbrios econômico-financeiros, resultando em economia média de 9% sobre o valor original dos contratos.</li>
+                <li>Implementação de KPIs de performance que aumentaram a eficiência alocativa de recursos em 15%.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="exp-title"><i class="fas fa-chart-bar"></i> Inteligência Comercial, Bid & Orçamentos <span class="exp-period">37+ meses</span></div>
+            <ul class="exp-desc">
+                <li>Elaboração de propostas técnicas para concorrências de grande porte nos setores de energia e construção (público e privado).</li>
+                <li>Desenvolvimento de modelos de viabilidade baseados em BI, reduzindo incertezas e aumentando a taxa de conversão em 22%.</li>
+                <li>Como consultor, estruturei orçamentos e planejamento físico-financeiro para obras de médio e grande porte, sempre com foco na rentabilidade.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- PROJETOS DE IMPACTO (reformulados com base no FAQ) -->
+    <section class="card">
+        <h2><i class="fas fa-rocket"></i> Projetos de impacto (Estudos de Casos)</h2>
+        <div class="projetos-grid">
+            <div class="projeto-card">
+                <i class="fas fa-tachometer-alt"></i>
+                <h4>Inteligência para Eficiência Logística</h4>
+                <p>Desenvolvimento de dashboards integrados para monitoramento em tempo real de frotas e estoques em terminal industrial. Unificação de dados de RH, logística e comercial para suporte a decisões estratégicas.</p>
+                <span class="projeto-resultado"><i class="fas fa-check-circle"></i> +22% de eficiência em tomada de decisão</span>
+            </div>
+            <div class="projeto-card">
+                <i class="fas fa-chart-pie"></i>
+                <h4>Otimização de Margem em Contratos B2B</h4>
+                <p>Análise aprofundada da cadeia de valor e estrutura de custos em contratos de infraestrutura, identificando gargalos de produtividade e renegociando termos com fornecedores críticos.</p>
+                <span class="projeto-resultado"><i class="fas fa-check-circle"></i> Margem operacional ampliada em 9%</span>
+            </div>
+            <div class="projeto-card">
+                <i class="fas fa-robot"></i>
+                <h4>Automação de Insights com IA Generativa</h4>
+                <p>Implementação de rotinas em Python e integração com IA generativa para sumarização automática de relatórios de desempenho e extração de insights preliminares de grandes bases de dados.</p>
+                <span class="projeto-resultado"><i class="fas fa-check-circle"></i> Tempo de análise reduzido em 40%</span>
+            </div>
+            <div class="projeto-card">
+                <i class="fas fa-balance-scale"></i>
+                <h4>Análise do Custo Brasil e Tributação</h4>
+                <p>Estudo setorial sobre ineficiências estruturais, jurídicas e tributárias que impactam a competitividade. O trabalho embasou reestruturação de contratos e planejamento tributário.</p>
+                <span class="projeto-resultado"><i class="fas fa-check-circle"></i> Economia tributária de 7% em escopo selecionado</span>
+            </div>
+        </div>
+        <p style="margin-top:25px; font-style:italic; color:#2c5a82;"><i class="fas fa-lightbulb" style="margin-right:5px;"></i> Estudos complementares disponíveis na <strong>Biblioteca Estratégica</strong> (frameworks de gestão, produtividade, liderança e finanças).</p>
+    </section>
+
+    <!-- FORMAÇÃO E QUALIFICAÇÕES -->
+    <section class="card">
+        <h2><i class="fas fa-graduation-cap"></i> Formação e capacitação aplicada</h2>
+        <ul class="bullet-list" style="margin-bottom:15px;">
+            <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:5px;"></i> <strong>Superior em Processos Gerenciais</strong> (conclusão junho/2026)</li>
+            <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:5px;"></i> <strong>Técnico em Administração</strong> – registro em conselho profissional</li>
+            <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:5px;"></i> <strong>Técnico em Edificações</strong> – registro em conselho profissional</li>
+        </ul>
+        <p style="margin-top:20px;"><strong>Domínio avançado em:</strong> gerenciamento de projetos (ágil/preditivo), análise de dados (Python, Power BI), IA generativa, orçamentação (Sinapi, composições), governança e ESG, negociação estratégica, liderança positiva.</p>
+    </section>
+
+    <!-- COMPETÊNCIAS COMPORTAMENTAIS -->
+    <section class="card">
+        <h2><i class="fas fa-handshake"></i> Competências comportamentais</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 25px;">
+            <ul class="bullet-list" style="flex:1;">
+                <li><i class="fas fa-users" style="color:var(--primary); margin-right:5px;"></i> <strong>Liderança de alta performance:</strong> times motivados e focados em resultados.</li>
+                <li><i class="fas fa-comments" style="color:var(--primary); margin-right:5px;"></i> <strong>Comunicação executiva:</strong> storytelling de dados e apresentações de impacto.</li>
+                <li><i class="fas fa-heart" style="color:var(--primary); margin-right:5px;"></i> <strong>Inteligência emocional:</strong> resiliência e mediação de conflitos.</li>
+            </ul>
+            <ul class="bullet-list" style="flex:1;">
+                <li><i class="fas fa-scale-balanced" style="color:var(--primary); margin-right:5px;"></i> <strong>Negociação estratégica:</strong> soluções ganha-ganha em ambientes complexos.</li>
+                <li><i class="fas fa-eye" style="color:var(--primary); margin-right:5px;"></i> <strong>Pensamento crítico e ético:</strong> decisões transparentes e íntegras.</li>
+                <li><i class="fas fa-sitemap" style="color:var(--primary); margin-right:5px;"></i> <strong>Visão sistêmica:</strong> conexão entre operação, tático e estratégico.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- OBJETIVOS E DISPONIBILIDADE -->
+    <section class="card">
+        <h2><i class="fas fa-bullseye"></i> Objetivos e disponibilidade</h2>
+        <p style="font-size:1.1rem;">Busco posições de liderança em <strong>Direção de Operações, Gerência de Suprimentos, Inteligência de Negócios ou Gestão de Contratos</strong>, onde possa alavancar minha visão integradora para gerar crescimento sustentável.</p>
+        <p style="margin-top:20px;"><span style="background:var(--primary-light); padding:10px 18px; border-radius:40px; display:inline-block;"><i class="fas fa-map-marker-alt" style="margin-right:5px;"></i> Baseado em Cubatão/SP · disponibilidade para viagens e realocação</span></p>
+        <p style="margin-top:15px;"><i class="fas fa-id-card"></i> <strong>CNH:</strong> Categoria AB · <i class="fas fa-clock"></i> <strong>Disponibilidade imediata</strong>.</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Silvanio Gois · Todos os direitos reservados</p>
+    <p style="margin-top:12px;">
+        <a href="https://www.silvaniogois.com.br" target="_blank"><i class="fas fa-globe"></i> silvaniogois.com.br</a> · 
+        <a href="https://wa.me/5513988301094" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a> · 
+        <a href="https://silvaniosg.github.io/entrevista/" target="_blank"><i class="fas fa-question-circle"></i> FAQ</a>
+    </p>
+    <p style="margin-top:20px; font-size:0.9rem;">Relatório estratégico para executivos e recrutadores · v.04/03/2026</p>
+</footer>
+
+<script>
+    function downloadPDF() {
+        // Esta função pode ser integrada com bibliotecas como html2pdf ou print
+        window.print();
+    }
+    // Atualiza o botão para chamar a função
+    document.querySelector('.download-btn').addEventListener('click', function(e){
+        e.preventDefault();
+        window.print();
+    });
+</script>
+</body>
+</html>
